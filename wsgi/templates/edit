@@ -1,0 +1,64 @@
+{% extends "base" %}
+{% block content %}
+        <form action="/admin/edit/{{ hash.its_when }}" method="post">
+        <table>
+            <tr>
+                <td class="label">When:</td>
+                <td>{{ hash.its_when }}</td>
+            </tr>
+            <tr>
+                <td class="label">Where:</td>
+                <td>
+                    <input type="text" name="where" value="{{ hash.its_where }}">
+                    <label>The name/address of the starting point.</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">On down:</td>
+                <td>
+                    <input type="text" name="on_down" value="{{ hash.on_down }}">
+                    <label>If different from "Where", the name/address
+                    for the On Down.</label>
+                    <label class="example">The Exeter Inn, Ashburton</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Who:</td>
+                <td>
+                    <input type="text" name="who" value="{{ hash.who }}">
+                    <label>Comma separated names of the hares.</label>
+                    <label class="example">MudSlinger, Sgt. Frost</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">What:</td>
+                <td>
+                    <input type="text" name="what" value="{{ hash.what }}">
+                    <label>The theme.</label>
+                    <label class="example">Tinsel hash</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Lat/lon:</td>
+                <td>
+                    <input type="text" name="lat_lon" value="{% if hash.lat is not none and hash.lon is not none %}{{ hash.lat }}, {{hash.lon}}{% endif %}"><br>
+                    <label>"Latitude, longitude" or a Google Maps URL.</label>
+                    <label class="example">50.0000, -3.5000</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Grid ref:</td>
+                <td>
+                    <input type="text" name="grid_ref" value="{% if hash.easting is not none and hash.northing is not none %}{{ hash.easting }}, {{hash.northing}}{% endif %}"><br>
+                    <label>"Easting, northing", or land ranger grid ref, or
+                    streetmap.co.uk URL.</label>
+                    <label class="example">275000,75000 or SX750750, or
+                    SX75007500</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update">
+            </tr>
+        </table>
+        </form>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "base" %}
+{% block content %}
+            <p class="about">
+                Our
+                <a href="http://ashburtonh3.blogspot.co.uk/">previous website</a>
+                still contains all kinds of crazy, fun (and sometimes even
+                useful!) tidbits, including photos, videos, and words from
+                previous hashes.
+            </p>
+{% endblock content %}

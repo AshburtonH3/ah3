@@ -1,0 +1,71 @@
+{% extends "base" %}
+{% block head %}
+        {% if hash is defined %}
+        <script type="text/javascript">
+            function initialise() {
+                var hashLocation = new google.maps.LatLng({{ hash.lat_lon() }});
+                var mapOptions = {
+                    center: hashLocation,
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(
+                    document.getElementById('home-map-canvas'), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: hashLocation,
+                    map: map,
+                    title: 'Hash!'
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialise);
+        </script>
+        {% endif %}
+{% endblock head %}
+{% block content %}
+            <div class="introduction">
+                <p>
+                    The Ashburton Hash House Harriers meet every Tuesday
+                    evening at 7:30pm, usually within a half-hour drive
+                    of Ashburton. The location of the next hash is shown
+                    below, but for more details of up-coming hashes
+                    check out the <a href="diary">diary</a>.
+                </p>
+                {% if newsflash is defined %}
+                <p class="newsflash">{{ newsflash.words }}</p>
+                {% endif %}
+            </div>
+            <div id="next-hash">
+                <h2>Next hash</h2>
+                {% if hash is defined %}
+                <table>
+                    <tr>
+                        <td class="label">When:</td>
+                        <td>{{ hash.human_readable_when() }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Where:</td>
+                        <td>{% if hash.its_where %}{{ hash.its_where }}{% else %}<em>TBD</em>{% endif %}{% if hash.easting and hash.northing %}<br><a href="{{ hash.streetmap_url() }}">{{ hash.land_ranger() }}</a>{% endif %}</td>
+                    </tr>
+                    {% if hash.on_down %}
+                    <tr>
+                        <td class="label">On down:</td>
+                        <td>{{ hash.on_down }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td class="label">Who:</td>
+                        <td>{% if hash.who %}{{ hash.who }}{% else %}<em>TBD</em>{% endif %}</td>
+                    </tr>
+                    {% if hash.what %}
+                        <tr>
+                            <td class="label">What:</td>
+                            <td>{{ hash.what }}</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                {% else %}
+                <em>TBD</em>
+                {% endif %}
+            </div>
+            <div id="home-map-canvas"></div>
+{% endblock content %}

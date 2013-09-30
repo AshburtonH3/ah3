@@ -1,0 +1,5 @@
+{% extends "base" %}
+{% block content %}
+<h2>Sign in with...</h2>
+<a href="auth/github">GitHub</a>
+{% endblock %}

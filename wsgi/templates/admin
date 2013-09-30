@@ -1,0 +1,52 @@
+{% extends "base" %}
+{% block content %}
+        <h2>Newsflash</h2>
+        {% if newsflash is defined %}
+        <p class="newsflash">{{ newsflash.words }}</p>
+        {% else %}
+        <p><em>N/A</em></p>
+        {% endif %}
+        <a href="/admin/newsflash">Edit</a>
+	<hr>
+        <h2>Upcoming hashes</h2>
+        {% for hash in hashes %}
+            <table>
+                <tr>
+                    <td class="label">When:</td>
+                    <td>{{ hash.its_when }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Where:</td>
+                    <td>{{ hash.its_where }}</td>
+                </tr>
+                {% if hash.on_down %}
+                <tr>
+                    <td class="label">On down:</td>
+                    <td>{{ hash.on_down }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td class="label">Who:</td>
+                    <td>{{ hash.who }}</td>
+                </tr>
+                <tr>
+                    <td class="label">What:</td>
+                    <td>{{ hash.what }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Lat/lon:</td>
+                    <td>{{ hash.lat }}, {{ hash.lon }}</td>
+                </tr>
+                {% if hash.easting or hash.northing %}
+                <tr>
+                    <td class="label">Grid ref:</td>
+                    <td>{{ hash.easting }}, {{ hash.northing }} <em>({{ hash.land_ranger() }})</em></td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2"><a href="/admin/edit/{{ hash.its_when }}">Edit</a></td>
+                </tr>
+            </table>
+            {% if not loop.last %}<hr/>{% endif %}
+        {% endfor %}
+{% endblock content %}

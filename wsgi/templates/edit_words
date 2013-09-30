@@ -1,0 +1,38 @@
+{% extends "base" %}
+{% block content %}
+        <form action="/admin/words/{{ hash.its_when }}" method="post">
+        <table>
+            <tr>
+                <td class="label">When:</td>
+                <td>{{ hash.its_when }}</td>
+            </tr>
+            <tr>
+                <td class="label">Where:</td>
+                <td>{% if hash.its_where %}{{ hash.its_where }}{% else %}<em>TBD</em>{% endif %}{% if hash.grid_ref %}<br><a href="{{ hash.streetmap_url() }}">{{ hash.grid_ref }}</a>{% endif %}</td>
+            </tr>
+            {% if hash.on_down %}
+            <tr>
+                <td class="label">On down:</td>
+                <td>{{ hash.on_down }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td class="label">Who:</td>
+                <td>{% if hash.who %}{{ hash.who }}{% else %}<em>TBD</em>{% endif %}</td>
+            </tr>
+            {% if hash.what %}
+            <tr>
+                <td class="label">What:</td>
+                <td>{{ hash.what }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td class="label">Words:</td>
+                <td><textarea name="words">{{ hash.words }}</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update">
+            </tr>
+        </table>
+        </form>
+{% endblock content %}

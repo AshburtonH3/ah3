@@ -1,0 +1,38 @@
+{% extends "base" %}
+{% block content %}
+        {% for hash in hashes %}
+            <h3>{{ hash.human_readable_when() }}</h3>
+            <table>
+                <tr>
+                    <td class="label">Where:</td>
+                    <td>{% if hash.its_where %}{{ hash.its_where }}{% else %}<em>TBD</em>{% endif %}{% if hash.grid_ref %}<br><a href="{{ hash.streetmap_url() }}">{{ hash.grid_ref }}</a>{% endif %}</td>
+                </tr>
+                {% if hash.on_down %}
+                <tr>
+                    <td class="label">On down:</td>
+                    <td>{{ hash.on_down }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td class="label">Who:</td>
+                    <td>{% if hash.who %}{{ hash.who }}{% else %}<em>TBD</em>{% endif %}</td>
+                </tr>
+                {% if hash.what %}
+                <tr>
+                    <td class="label">What:</td>
+                    <td>{{ hash.what }}</td>
+                </tr>
+                {% endif %}
+            </table>
+            {% if hash.words %}
+                <div class="quote">
+                    &ldquo;{{ hash.short_words() }}&hellip;&rdquo;
+                    <a href="/words/{{ hash.its_when }}">read more &raquo;</a>
+                </div>
+            {% endif %}
+            {% if is_admin %}
+                <div class="update_words"><a href="/admin/words/{{ hash.its_when }}">[Update words]</a></div>
+            {% endif %}
+            {% if not loop.last %}<hr>{% endif %}
+        {% endfor %}
+{% endblock content %}

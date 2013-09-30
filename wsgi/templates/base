@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+        <meta content="width=device-width, initial-scale=1, minimum-scale=1" name="viewport">
+        <link type="text/css" rel="stylesheet" href="/static/style/main.css"></link>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"></link>
+        {% if map_api_key %}
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key={{ map_api_key }}&sensor=false&libraries=visualization"></script>
+        {% endif %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <h1>Ashburton Hash House Harriers</h1>
+        <ul class="menu" id="main_menu">
+            {% for menu_item in menu_items %}
+                <li {% if menu_item.selected %}class="current"{% endif %}><a href="{{ menu_item.url}}">{{ menu_item.title }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="column">
+            {% block content %}{% endblock %}
+            <div class="column_end"></div>
+        </div>
+        <ul class="menu" id="admin_menu">
+            {% if is_admin %}
+                <li><a href="/admin">Admin</a></li>
+            {% endif %}
+            <li><a href="{{ auth_url }}">{{ auth_action }}</a></li>
+        </ul>
+    </body>
+</html>
+{% endautoescape %}

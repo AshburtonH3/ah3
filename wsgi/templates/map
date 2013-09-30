@@ -1,0 +1,30 @@
+{% extends "base" %}
+{% block head %}
+        <script type="text/javascript">
+            var map;
+            function initialize() {
+              var mapOptions = {
+                zoom: 10,
+                center: new google.maps.LatLng(50.515555, -3.756047)
+              };
+              map = new google.maps.Map(document.getElementById('where-map-canvas'), mapOptions);
+
+              var taxiData = [{% for hash in hashes %}
+                new google.maps.LatLng({{ hash.lat }}, {{ hash.lon }}){% if not loop.last %},{% endif %}{% endfor %}
+              ];
+
+              var heatmap = new google.maps.visualization.HeatmapLayer({
+                data: new google.maps.MVCArray(taxiData),
+                radius: 20
+              });
+
+              heatmap.setMap(map);
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+{% endblock head %}
+{% block content %}
+            <p class="about"></p>
+            <div id="where-map-canvas"></div>
+{% endblock content %}

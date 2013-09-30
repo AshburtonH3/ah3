@@ -1,0 +1,14 @@
+{% extends "base" %}
+{% block content %}
+        <form action="config" method="post">
+        <table>
+            <tr>
+                <td class="label">Google Maps API Key:</td>
+                <td><input type="text" name="map_api_key" value="{{ config.map_api_key }}"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update">
+            </tr>
+        </table>
+        </form>
+{% endblock content %}
