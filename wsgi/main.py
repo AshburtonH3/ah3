@@ -408,6 +408,11 @@ def admin_newsflash():
         return flask.redirect('/admin')
 
 
+@app.route('/index.html')
+def index_html():
+    return flask.redirect('/')
+
+
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
