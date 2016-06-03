@@ -165,7 +165,7 @@ def default_template_values():
         auth_url = '/logout'
         auth_action = 'Log out'
     else:
-        auth_url = '/login'
+        auth_url = 'https://ah3-rhattersley.rhcloud.com/login'
         auth_action = 'Log in'
 
     template_values = {
