@@ -33,10 +33,12 @@
                     <td class="label">What:</td>
                     <td>{{ hash.what }}</td>
                 </tr>
+<!--
                 <tr>
                     <td class="label">Lat/lon:</td>
                     <td>{{ hash.lat }}, {{ hash.lon }}</td>
                 </tr>
+-->
                 {% if hash.easting or hash.northing %}
                 <tr>
                     <td class="label">Grid ref:</td>

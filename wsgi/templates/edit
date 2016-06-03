@@ -38,6 +38,7 @@
                     <label class="example">Tinsel hash</label>
                 </td>
             </tr>
+<!--
             <tr>
                 <td class="label">Lat/lon:</td>
                 <td>
@@ -46,6 +47,7 @@
                     <label class="example">50.0000, -3.5000</label>
                 </td>
             </tr>
+-->
             <tr>
                 <td class="label">Grid ref:</td>
                 <td>

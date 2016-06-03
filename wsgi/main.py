@@ -341,21 +341,21 @@ def edit(date):
         who = [w.strip() for w in who]
         hash_.who = ', '.join(who)
         hash_.what = flask.request.form.get('what')
-        lat_lon_src = flask.request.form.get('lat_lon')
-        lat_lon = decode_google_maps_url(lat_lon_src)
-        if lat_lon:
-            hash_.lat, hash_.lon = lat_lon
-        else:
-            bits = lat_lon_src.split(',')
-            if len(bits) == 2:
-                try:
-                    hash_.lat = float(bits[0])
-                except ValueError:
-                    pass
-                try:
-                    hash_.lon = float(bits[1])
-                except ValueError:
-                    pass
+        #lat_lon_src = flask.request.form.get('lat_lon')
+        #lat_lon = decode_google_maps_url(lat_lon_src)
+        #if lat_lon:
+        #    hash_.lat, hash_.lon = lat_lon
+        #else:
+        #    bits = lat_lon_src.split(',')
+        #    if len(bits) == 2:
+        #        try:
+        #            hash_.lat = float(bits[0])
+        #        except ValueError:
+        #            pass
+        #        try:
+        #            hash_.lon = float(bits[1])
+        #        except ValueError:
+        #            pass
         grid_ref = flask.request.form.get('grid_ref')
         x_y = decode_streetmap_url(grid_ref)
         if x_y:
