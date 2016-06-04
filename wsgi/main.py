@@ -366,6 +366,9 @@ def edit(date):
                     osgb.is_land_ranger(grid_ref))
             if ',' in grid_ref:
                 hash_.easting, hash_.northing = map(int, grid_ref.split(','))
+        if hash_.easting is not None and hash_.northing is not None:
+            hash_.lat, hash_.lon = osgb.osgb_to_wgs84_lat_long(hash_.easting,
+                                                               hash_.northing)
         db.session.commit()
         return flask.redirect('/admin')
 
